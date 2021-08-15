@@ -1,0 +1,24 @@
+{
+  "name": "ss-checker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc && node ./build/index.js",
+    "publish": "npm-run-all publish:*",
+    "publish:image": "mkdir docker-build && cp ./Dockerfile ./docker-build && cp ./build/index.js ./docker-build && cp package.json ./docker-build && cp package-lock.json ./docker-build/ &&  cd docker-build && sudo docker build -t enthusiast/ss-checker . && cd .. && rm -R docker-build",
+    "publish:login": "sudo docker login -u cyberprodigy",
+    "publish:push": "sudo docker push enthusiast/ss-checker"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gmail-send": "^1.8.10",
+    "got": "^11.8.2",
+    "moment": "^2.29.1",
+    "node-html-parser": "^4.1.3",
+    "npm-run-all": "^4.1.5"
+  }
+}
